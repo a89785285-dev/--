@@ -25,12 +25,15 @@ jobs:
         with:
           gradle-version: '8.10.2'
 
+      - name: Extract VANTA
+        run: |
+          unzip -q VANTA_Client_1.21.4_v0.1.0.zip -d .
+
       - name: Build VANTA
-        run: gradle build
+        run: gradle -p VANTA_1_21_4 build
 
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
           name: VANTA-Client
-          path: build/libs/*.jar
-          
+          path: VANTA_1_21_4/build/libs/*.jar
